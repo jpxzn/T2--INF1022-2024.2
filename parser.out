@@ -1,0 +1,178 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> cmds
+Rule 2     cmds -> cmd cmds
+Rule 3     cmds -> cmd
+Rule 4     cmd -> FACA VAR SER NUM PONTO
+Rule 5     cmd -> MOSTRE VAR PONTO
+Rule 6     cmd -> FACA VAR SER VAR MAIS VAR PONTO
+
+Terminals, with rules where they appear
+
+FACA                 : 4 6
+MAIS                 : 6
+MOSTRE               : 5
+NUM                  : 4
+PONTO                : 4 5 6
+SER                  : 4 6
+VAR                  : 4 5 6 6 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+cmd                  : 2 3
+cmds                 : 1 2
+programa             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . cmds
+    (2) cmds -> . cmd cmds
+    (3) cmds -> . cmd
+    (4) cmd -> . FACA VAR SER NUM PONTO
+    (5) cmd -> . MOSTRE VAR PONTO
+    (6) cmd -> . FACA VAR SER VAR MAIS VAR PONTO
+
+    FACA            shift and go to state 4
+    MOSTRE          shift and go to state 5
+
+    programa                       shift and go to state 1
+    cmds                           shift and go to state 2
+    cmd                            shift and go to state 3
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> cmds .
+
+    $end            reduce using rule 1 (programa -> cmds .)
+
+
+state 3
+
+    (2) cmds -> cmd . cmds
+    (3) cmds -> cmd .
+    (2) cmds -> . cmd cmds
+    (3) cmds -> . cmd
+    (4) cmd -> . FACA VAR SER NUM PONTO
+    (5) cmd -> . MOSTRE VAR PONTO
+    (6) cmd -> . FACA VAR SER VAR MAIS VAR PONTO
+
+    $end            reduce using rule 3 (cmds -> cmd .)
+    FACA            shift and go to state 4
+    MOSTRE          shift and go to state 5
+
+    cmd                            shift and go to state 3
+    cmds                           shift and go to state 6
+
+state 4
+
+    (4) cmd -> FACA . VAR SER NUM PONTO
+    (6) cmd -> FACA . VAR SER VAR MAIS VAR PONTO
+
+    VAR             shift and go to state 7
+
+
+state 5
+
+    (5) cmd -> MOSTRE . VAR PONTO
+
+    VAR             shift and go to state 8
+
+
+state 6
+
+    (2) cmds -> cmd cmds .
+
+    $end            reduce using rule 2 (cmds -> cmd cmds .)
+
+
+state 7
+
+    (4) cmd -> FACA VAR . SER NUM PONTO
+    (6) cmd -> FACA VAR . SER VAR MAIS VAR PONTO
+
+    SER             shift and go to state 9
+
+
+state 8
+
+    (5) cmd -> MOSTRE VAR . PONTO
+
+    PONTO           shift and go to state 10
+
+
+state 9
+
+    (4) cmd -> FACA VAR SER . NUM PONTO
+    (6) cmd -> FACA VAR SER . VAR MAIS VAR PONTO
+
+    NUM             shift and go to state 12
+    VAR             shift and go to state 11
+
+
+state 10
+
+    (5) cmd -> MOSTRE VAR PONTO .
+
+    FACA            reduce using rule 5 (cmd -> MOSTRE VAR PONTO .)
+    MOSTRE          reduce using rule 5 (cmd -> MOSTRE VAR PONTO .)
+    $end            reduce using rule 5 (cmd -> MOSTRE VAR PONTO .)
+
+
+state 11
+
+    (6) cmd -> FACA VAR SER VAR . MAIS VAR PONTO
+
+    MAIS            shift and go to state 13
+
+
+state 12
+
+    (4) cmd -> FACA VAR SER NUM . PONTO
+
+    PONTO           shift and go to state 14
+
+
+state 13
+
+    (6) cmd -> FACA VAR SER VAR MAIS . VAR PONTO
+
+    VAR             shift and go to state 15
+
+
+state 14
+
+    (4) cmd -> FACA VAR SER NUM PONTO .
+
+    FACA            reduce using rule 4 (cmd -> FACA VAR SER NUM PONTO .)
+    MOSTRE          reduce using rule 4 (cmd -> FACA VAR SER NUM PONTO .)
+    $end            reduce using rule 4 (cmd -> FACA VAR SER NUM PONTO .)
+
+
+state 15
+
+    (6) cmd -> FACA VAR SER VAR MAIS VAR . PONTO
+
+    PONTO           shift and go to state 16
+
+
+state 16
+
+    (6) cmd -> FACA VAR SER VAR MAIS VAR PONTO .
+
+    FACA            reduce using rule 6 (cmd -> FACA VAR SER VAR MAIS VAR PONTO .)
+    MOSTRE          reduce using rule 6 (cmd -> FACA VAR SER VAR MAIS VAR PONTO .)
+    $end            reduce using rule 6 (cmd -> FACA VAR SER VAR MAIS VAR PONTO .)
+
